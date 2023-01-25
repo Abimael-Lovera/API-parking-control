@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+
+  db:
+    container_name: parking
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: spring
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: parking-control-db

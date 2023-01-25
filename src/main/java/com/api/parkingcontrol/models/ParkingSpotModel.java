@@ -9,36 +9,36 @@ import java.util.UUID;
 @Table(name = "TB_PARKING_SPOT")
 public class ParkingSpotModel implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //gerar dados automaticamente
-    private UUID id; //tipo UUID para que nosso id sesa unico e universal
-    // nullable = false nosso campo vai ser obrigatorio
-    //unique campo unico
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
     @Column(nullable = false, unique = true, length = 10)
     private String parkingSpotNumber;
 
     @Column(nullable = false, unique = true, length = 7)
     private String licensePlateCar;
-    
-    @Column(nullable = true, length = 70)
+
+    @Column(nullable = false, length = 70)
     private String brandCar;
 
-    @Column(nullable = true, length = 70)
+    @Column(nullable = false, length = 70)
     private String modelCar;
 
-    @Column(nullable = true, length = 70)
+    @Column(nullable = false, length = 70)
     private String colorCar;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private LocalDateTime registrationDate;
 
-    @Column(nullable = true, length = 130)
+    @Column(nullable = false, length = 130)
     private String responsibleName;
 
-    @Column(nullable = true, length = 30)
+    @Column(nullable = false, length = 30)
     private String apartament;
 
-    @Column(nullable = true, length = 30)
+    @Column(nullable = false, length = 30)
     private String block;
 
     public UUID getId() {

@@ -2,6 +2,8 @@ package com.api.parkingcontrol.services;
 
 import com.api.parkingcontrol.models.ParkingSpotModel;
 import com.api.parkingcontrol.repositories.ParkingSpotRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,11 +16,11 @@ public class ParkingSpotService {
 
     final ParkingSpotRepository parkingSpotRepository;
 
-    public ParkingSpotService (ParkingSpotRepository parkingSpotRepository){
+    public ParkingSpotService(ParkingSpotRepository parkingSpotRepository) {
         this.parkingSpotRepository = parkingSpotRepository;
     }
 
-    @Transactional // quando sao metodos construtivos ou destrutivos
+    @Transactional
     public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
         return parkingSpotRepository.save(parkingSpotModel);
     }
@@ -31,13 +33,18 @@ public class ParkingSpotService {
         return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
     }
 
-    public List<ParkingSpotModel> findAll() {
-        return parkingSpotRepository.findAll();
+    public boolean existsByApartamentAndBlock(String apartament, String block) {
+        return parkingSpotRepository.existsByApartamentAndBlock(apartament, block);
+    }
+
+    public Page<ParkingSpotModel> findAll(Pageable pageable) {
+        return parkingSpotRepository.findAll(pageable);
     }
 
     public Optional<ParkingSpotModel> findById(UUID id) {
         return parkingSpotRepository.findById(id);
     }
+
 
     @Transactional
     public void delete(ParkingSpotModel parkingSpotModel) {
